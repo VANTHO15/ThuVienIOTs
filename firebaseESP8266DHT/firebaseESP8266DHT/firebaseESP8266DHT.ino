@@ -25,20 +25,20 @@
 #include <addons/RTDBHelper.h>
 
 /* 1. Define the WiFi credentials */
-#define WIFI_SSID "raspberry"
-#define WIFI_PASSWORD "dayo2022"
+#define WIFI_SSID "Van Tho 15"
+#define WIFI_PASSWORD "chumuc15"
 
 //For the following credentials, see examples/Authentications/SignInAsUser/EmailPassword/EmailPassword.ino
 
 /* 2. Define the API Key */
-#define API_KEY "AIzaSyAdbz40mouZhn0DMhzn9V-OkjiCABvv4kA"
+#define API_KEY "AIzaSyBTv99opAG69JOmIAKKkvI1BsHkC-tMq_Y"
 
 /* 3. Define the RTDB URL */
-#define DATABASE_URL "fir-esp8266-87518-default-rtdb.firebaseio.com" //<databaseName>.firebaseio.com or <databaseName>.<region>.firebasedatabase.app
+#define DATABASE_URL "fir-new-74c8a-default-rtdb.firebaseio.com" //<databaseName>.firebaseio.com or <databaseName>.<region>.firebasedatabase.app
 
 /* 4. Define the user Email and password that alreadey registerd or added in your project */
-#define USER_EMAIL "adesolasamuel2018@gmail.com"
-#define USER_PASSWORD "esp8266demo"
+#define USER_EMAIL "tho@gmail.com"
+#define USER_PASSWORD "vannhucu"
 
 //Define Firebase Data object
 FirebaseData fbdo;
@@ -91,13 +91,13 @@ void loop()
   if (Firebase.ready() && (millis() - sendDataPrevMillis > 15000 || sendDataPrevMillis == 0))
   {
     sendDataPrevMillis = millis();
-    Serial.printf("Set Temperature... %s\n", Firebase.setFloat(fbdo, F("/test/temperature"), "van Tho") ? "ok" : fbdo.errorReason().c_str());
+    Firebase.setFloat(fbdo, F("/test/temperature"), 123) ? "ok" : fbdo.errorReason().c_str();
 
-    Serial.printf("Get Temperature... %s\n", Firebase.getFloat(fbdo, F("/test/temperature")) ? String(fbdo.to<float>()).c_str() : fbdo.errorReason().c_str());
-
-    Serial.printf("Set Humidity... %s\n", Firebase.setDouble(fbdo, F("/test/humidity"), "123") ? "ok" : fbdo.errorReason().c_str());
-
-    Serial.printf("Get Humidity... %s\n", Firebase.getDouble(fbdo, F("/test/humidity")) ? String(fbdo.to<double>()).c_str() : fbdo.errorReason().c_str());
+//    Serial.printf("Get Temperature... %s\n", Firebase.getFloat(fbdo, F("/test/temperature")) ? String(fbdo.to<float>()).c_str() : fbdo.errorReason().c_str());
+//
+//    Serial.printf("Set Humidity... %s\n", Firebase.setDouble(fbdo, F("/test/humidity"), "123") ? "ok" : fbdo.errorReason().c_str());
+//
+//    Serial.printf("Get Humidity... %s\n", Firebase.getDouble(fbdo, F("/test/humidity")) ? String(fbdo.to<double>()).c_str() : fbdo.errorReason().c_str());
 
         //For the usage of FirebaseJson, see examples/FirebaseJson/BasicUsage/Create_Parse_Edit.ino
     FirebaseJson json;
@@ -116,22 +116,6 @@ void loop()
     
     Serial.println();
     
-    //For generic set/get functions.
-
-    //For generic set, use Firebase.set(fbdo, <path>, <any variable or value>)
-
-    //For generic get, use Firebase.get(fbdo, <path>).
-    //And check its type with fbdo.dataType() or fbdo.dataTypeEnum() and
-    //cast the value from it e.g. fbdo.to<int>(), fbdo.to<std::string>().
-
-    //The function, fbdo.dataType() returns types String e.g. string, boolean,
-    //int, float, double, json, array, blob, file and null.
-
-    //The function, fbdo.dataTypeEnum() returns type enum (number) e.g. fb_esp_rtdb_data_type_null (1),
-    //fb_esp_rtdb_data_type_integer, fb_esp_rtdb_data_type_float, fb_esp_rtdb_data_type_double,
-    //fb_esp_rtdb_data_type_boolean, fb_esp_rtdb_data_type_string, fb_esp_rtdb_data_type_json,
-    //fb_esp_rtdb_data_type_array, fb_esp_rtdb_data_type_blob, and fb_esp_rtdb_data_type_file (10)
-
     count++;
   }
 }
